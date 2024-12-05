@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduling App</title>
+    <!-- Link to styles.css -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Control Buttons -->
+    <div id="controlButtons">
+        <button id="openModalButton">Add New Schedule</button>
+        <button id="exportSchedulesButton">Export Schedules</button>
+        <button id="importSchedulesButton">Import Schedules</button>
+        <input type="file" id="importSchedulesInput" style="display: none;" accept=".json">
+        <button id="printScheduleButton">Print Schedule</button>
+        <button id="clearDataButton">Clear Saved Data</button> <!-- New button -->
+    </div>
+
+    <!-- Selection to View Schedule -->
+    <div id="viewSchedule">
+        <label for="viewType">View Schedule By:</label>
+        <select id="viewType">
+            <option value="faculty" selected>Faculty</option>
+            <option value="classSection">Class/Section</option>
+            <option value="room">Room</option>
+        </select>
+
+        <input type="text" id="viewValue" list="viewList" placeholder="Select or type to search">
+        <datalist id="viewList"></datalist>
+    </div>
+
+    <!-- Main Timetable -->
+    <div class="timetable-container single" id="mainTimetable">
+        <!-- Headers will be generated dynamically -->
+    </div>
+
+    <!-- The Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <!-- Input Fields -->
+            <form id="scheduleForm">
+                <label for="faculty">Faculty:</label>
+                <input type="text" id="faculty" name="faculty" list="facultyList" required>
+                <datalist id="facultyList"></datalist>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" list="subjectList" required>
+                <datalist id="subjectList"></datalist>
+
+                <label for="classSection">Class/Section:</label>
+                <input type="text" id="classSection" name="classSection" list="classSectionList" required>
+                <datalist id="classSectionList"></datalist>
+
+                <label for="room">Room:</label>
+                <input type="text" id="room" name="room" list="roomList" required>
+                <datalist id="roomList"></datalist>
+
+                <label for="classType">Class Type:</label>
+                <select id="classType" name="classType">
+                    <option value="Lecture">Lecture</option>
+                    <option value="Lab">Lab</option>
+                </select>
+            </form>
+
+            <!-- Checkboxes to toggle schedule overlays -->
+            <div id="overlayOptions">
+                <label>
+                    <input type="checkbox" id="overlayFaculty" checked>
+                    Show Faculty Schedule
+                </label>
+                <label>
+                    <input type="checkbox" id="overlayClassSection" checked>
+                    Show Class/Section Schedule
+                </label>
+                <label>
+                    <input type="checkbox" id="overlayRoom" checked>
+                    Show Room Schedule
+                </label>
+            </div>
+
+            <!-- Selection Mode Radio Buttons -->
+            <div id="selection-mode">
+                <label>
+                    <input type="radio" name="mode" value="single" checked> Single
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="mwf"> MWF
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="tth"> TTh
+                </label>
+            </div>
+
+            <!-- Modal Timetable (for selection only) -->
+            <div class="timetable-container single" id="modalTimetable">
+                <!-- Headers will be generated dynamically -->
+            </div>
+
+            <div id="selection-info">
+                Selection Info: No cells selected
+            </div>
+
+            <!-- Save and Delete Buttons -->
+            <div class="modal-buttons">
+                <button type="button" id="saveScheduleButton">Save Schedule</button>
+                <button type="button" id="deleteScheduleButton" style="display: none;">Delete Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include script.js -->
+    <script src="script.js"></script>
+</body>
+</html>

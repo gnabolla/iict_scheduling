@@ -1,0 +1,356 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Control Buttons Styles */
+#controlButtons {
+    margin-bottom: 15px; /* Reduced margin */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#controlButtons button {
+    padding: 8px 12px; /* Reduced padding */
+    margin-right: 5px; /* Reduced margin */
+    font-size: 0.9em; /* Smaller font size */
+    cursor: pointer;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#controlButtons button:hover {
+    background-color: #2980b9;
+}
+
+/* View Schedule Section */
+#viewSchedule {
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+#viewSchedule label {
+    font-weight: bold;
+    margin-right: 8px; /* Reduced margin */
+    font-size: 0.9em; /* Smaller font size */
+}
+
+#viewSchedule select,
+#viewSchedule input {
+    padding: 4px; /* Reduced padding */
+    font-size: 0.9em; /* Smaller font size */
+    margin-right: 8px; /* Added margin for better spacing */
+}
+
+/* Overlay Options Styles */
+#overlayOptions {
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+#overlayOptions label {
+    margin-right: 15px; /* Reduced margin */
+    cursor: pointer;
+    font-size: 0.9em; /* Smaller font size */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 15px; /* Reduced padding */
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 900px; /* Reduced max-width */
+    position: relative;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    right: 12px; /* Adjusted position */
+    top: 8px;
+    font-size: 24px; /* Reduced font size */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Timetable Styles */
+.timetable-container {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr); /* Reduced first column width */
+    gap: 0.5px; /* Reduced gap */
+    background: #f0f0f0;
+    padding: 12px; /* Reduced padding */
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    position: relative;
+}
+
+.header {
+    background: #2c3e50;
+    color: white;
+    padding: 8px; /* Reduced padding */
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.85em; /* Smaller font size */
+}
+
+.time-slot {
+    background: #ecf0f1;
+    padding: 4px; /* Reduced padding */
+    border: 1px solid #bdc3c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px; /* Reduced height */
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+    font-size: 0.8em; /* Smaller font size */
+}
+
+.time-slot:hover {
+    background: #d5dbdb;
+}
+
+.time-slot.selected {
+    background: #3498db;
+    color: white;
+}
+
+.time-slot.scheduled {
+    background: #2ecc71;
+    color: white;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+.time-slot.scheduled.lecture {
+    background: #2ecc71; /* Green for Lectures */
+}
+
+.time-slot.scheduled.lab {
+    background: #e67e22; /* Orange for Labs */
+}
+
+.time-slot.unavailable {
+    background: #e74c3c;
+    color: white;
+    cursor: not-allowed;
+}
+
+.time-label {
+    background: #34495e;
+    color: white;
+    padding: 6px; /* Reduced padding */
+    border: 1px solid #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em; /* Smaller font size */
+    min-height: 30px; /* Reduced height */
+}
+
+#selection-info {
+    margin-top: 15px; /* Reduced margin */
+    padding: 10px; /* Reduced padding */
+    background: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    font-size: 0.85em; /* Smaller font size */
+}
+
+/* Radio Buttons Container */
+#selection-mode {
+    margin-bottom: 15px; /* Reduced margin */
+    font-family: Arial, sans-serif;
+}
+
+#selection-mode label {
+    margin-right: 15px; /* Reduced margin */
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 0.9em; /* Smaller font size */
+}
+
+/* Disabled Columns */
+.timetable-container.single .time-slot,
+.timetable-container.mwf .time-slot[data-day="0"],
+.timetable-container.mwf .time-slot[data-day="2"],
+.timetable-container.mwf .time-slot[data-day="4"],
+.timetable-container.tth .time-slot[data-day="1"],
+.timetable-container.tth .time-slot[data-day="3"] {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.timetable-container.mwf .time-slot[data-day="1"],
+.timetable-container.mwf .time-slot[data-day="3"],
+.timetable-container.tth .time-slot[data-day="0"],
+.timetable-container.tth .time-slot[data-day="2"],
+.timetable-container.tth .time-slot[data-day="4"] {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.timetable-container.single .time-slot {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/* Form Styles */
+#scheduleForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px; /* Reduced gap */
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+#scheduleForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px; /* Reduced margin */
+    font-size: 0.85em; /* Smaller font size */
+}
+
+#scheduleForm input,
+#scheduleForm select {
+    width: 100%;
+    padding: 4px; /* Reduced padding */
+    box-sizing: border-box;
+    font-size: 0.85em; /* Smaller font size */
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    margin-top: 15px; /* Reduced margin */
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px; /* Reduced gap */
+}
+
+.modal-buttons button {
+    padding: 8px 16px; /* Reduced padding */
+    font-size: 0.9em; /* Smaller font size */
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#saveScheduleButton {
+    background-color: #27ae60;
+    color: white;
+}
+
+#saveScheduleButton:hover {
+    background-color: #1e8449;
+}
+
+#deleteScheduleButton {
+    background-color: #c0392b;
+    color: white;
+}
+
+#deleteScheduleButton:hover {
+    background-color: #a93226;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .timetable-container {
+        font-size: 0.75em; /* Further reduced font size */
+        padding: 8px;
+    }
+
+    .time-slot, .time-label {
+        padding: 3px; /* Further reduced padding */
+        min-height: 25px; /* Further reduced height */
+    }
+
+    #scheduleForm {
+        grid-template-columns: 1fr;
+    }
+
+    #controlButtons button {
+        padding: 6px 10px; /* Further reduced padding */
+        font-size: 0.8em; /* Further reduced font size */
+        margin-right: 5px;
+    }
+
+    /* Hide non-essential elements */
+    #overlayOptions,
+    #selection-mode,
+    #selection-info,
+    .modal-buttons {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 600px) {
+    .timetable-container {
+        grid-template-columns: 60px repeat(5, 1fr); /* Further reduced first column */
+    }
+
+    .header, .time-label {
+        font-size: 0.75em; /* Further reduced font size */
+        padding: 3px; /* Further reduced padding */
+    }
+
+    .time-slot {
+        font-size: 0.7em; /* Further reduced font size */
+        padding: 2px; /* Further reduced padding */
+        min-height: 25px; /* Further reduced height */
+    }
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #mainTimetable, #mainTimetable * {
+        visibility: visible;
+    }
+    #mainTimetable {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    /* Hide interactive elements */
+    #controlButtons,
+    #exportSchedulesButton,
+    #importSchedulesButton,
+    #printScheduleButton,
+    #viewSchedule,
+    .modal {
+        display: none !important;
+    }
+    .time-slot {
+        min-height: 20px;
+    }
+}
